@@ -1,6 +1,3 @@
-#https://developers.google.com/maps/documentation/geocoding/intro#StatusCodes
-#Might want to use the partial_match feature returned from the JSON object
-#to determine whether address available.
 import requests
 
 class GoogleAddressQuery:
