@@ -2,7 +2,8 @@ import requests
 
 class GoogleAddressQuery:
     """
-    A address query to the Google geocoding API.
+    Creates an address query to interact with the 
+    Google geocoding API.
     """
 
     url = "https://maps.googleapis.com/maps/api/geocode/json"
