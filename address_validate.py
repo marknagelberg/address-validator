@@ -55,4 +55,7 @@ class GoogleAddresses:
     Collection of GoogleAddress
     """
 
+    def __init__(self, addresses):
+        self.addresses = [GoogleAddress(x) for x in addresses]
+
 
