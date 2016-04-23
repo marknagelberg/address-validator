@@ -13,7 +13,7 @@ class GoogleAddressQuery:
         self.key = key
         params = {'address':self.query, 'key': self.key}
         r = requests.get(self.url, params = params)
-        self.addresses = r.json()["results"]
+        self.addresses = GoogleAddresses(r.json()["results"])
         self.status = r.json()["status"]
 
     def num_addresses(self):
