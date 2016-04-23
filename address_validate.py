@@ -19,21 +19,6 @@ class GoogleAddressQuery:
     def num_addresses(self):
         return len(self.addresses)
 
-    def exact_match_exists(self):
-        """
-        Returns true if at least one address is not a partial
-        match (so presumably exact) and at least one address returned
-        from the query..
-        """
-
-        if self.num_addresses() == 0:
-            return False
-
-        for address in self.addresses:
-            if "partial_match" in address and address["partial_match"] == True:
-                return False
-        return True
-
 class GoogleAddress:
     """
     An individual address returned from Google Geocode API.
@@ -49,7 +34,6 @@ class GoogleAddress:
             self.partial_match = False
 
 
-
 class GoogleAddresses:
     """
     Collection of GoogleAddress
@@ -58,4 +42,19 @@ class GoogleAddresses:
     def __init__(self, addresses):
         self.addresses = [GoogleAddress(x) for x in addresses]
 
+    def exact_match_exists(self):
+        """
+        Returns true if at least one address is not a partial
+        match (so presumably exact) and at least one address returned
+        from the query.
+        """
+
+        if len(self.addresses) == 0:
+            return False
+
+        for address in self.addresses:
+            if not address.partial_match:
+                return True
+
+        return False
 
