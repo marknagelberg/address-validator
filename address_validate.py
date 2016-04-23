@@ -14,6 +14,7 @@ class GoogleAddressQuery:
         params = {'address':self.query, 'key': self.key}
         r = requests.get(self.url, params = params)
         self.addresses = r.json()["results"]
+        self.status = r.json()["status"]
 
     def num_addresses(self):
         return len(self.addresses)
@@ -37,6 +38,17 @@ class GoogleAddress:
     """
     An individual address returned from Google Geocode API.
     """
+
+    def __init__(self, **kwargs):
+        self.formatted_address = kwargs["formatted_address"]
+        self.address_components = kwargs["address_components"]
+
+        if "partial_match" in kwargs:
+            self.partial_match = kwargs["partial_match"]
+        else:
+            self.partial_match = False
+
+
 
 class GoogleAddresses:
     """
