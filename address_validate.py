@@ -33,4 +33,14 @@ class GoogleAddressQuery:
                 return False
         return True
 
+class GoogleAddress:
+    """
+    An individual address returned from Google Geocode API.
+    """
+
+class GoogleAddresses:
+    """
+    Collection of GoogleAddress
+    """
+
 
