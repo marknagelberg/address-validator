@@ -17,7 +17,7 @@ class GoogleAddressQuery:
         self.status = r.json()["status"]
 
     def num_addresses(self):
-        return len(self.addresses)
+        return len(self.addresses.num_addresses())
 
 class GoogleAddress:
     """
@@ -40,7 +40,9 @@ class GoogleAddresses:
     """
 
     def __init__(self, addresses):
-        self.addresses = [GoogleAddress(x) for x in addresses]
+        print addresses
+        print type(addresses)
+        self.addresses = [GoogleAddress(**x) for x in addresses]
 
     def exact_match_exists(self):
         """
@@ -57,4 +59,7 @@ class GoogleAddresses:
                 return True
 
         return False
+
+    def num_addresses(self):
+        return len(self.addresses)
 
