@@ -33,6 +33,12 @@ class GoogleAddress:
         else:
             self.partial_match = False
 
+    def get_postal_code(self):
+        for component in self.address_components:
+            if component["types"][0] == "postal_code":
+                return component["long_name"]
+        return None
+
 
 class GoogleAddresses:
     """
@@ -40,8 +46,6 @@ class GoogleAddresses:
     """
 
     def __init__(self, addresses):
-        print addresses
-        print type(addresses)
         self.addresses = [GoogleAddress(**x) for x in addresses]
 
     def exact_match_exists(self):
@@ -62,4 +66,7 @@ class GoogleAddresses:
 
     def num_addresses(self):
         return len(self.addresses)
+
+    def get_address(self, pos):
+        return self.addresses[pos]
 
