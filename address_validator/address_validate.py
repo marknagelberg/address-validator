@@ -46,7 +46,7 @@ class GoogleAddresses:
     """
 
     def __init__(self, addresses):
-        self.addresses = [GoogleAddress(**x) for x in addresses]
+        self.addresses = [GoogleAddress(**x) for x in addresses if "street_address" in x["types"]]
 
     def exact_match_exists(self):
         """
