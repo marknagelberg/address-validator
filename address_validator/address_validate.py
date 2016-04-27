@@ -35,7 +35,7 @@ class GoogleAddress:
 
     def get_postal_code(self):
         for component in self.address_components:
-            if component["types"][0] == "postal_code":
+            if "postal_code" in component["types"]:
                 return component["long_name"]
         return None
 
